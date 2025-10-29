@@ -1,0 +1,125 @@
+# Simple Agent Ontology Example
+
+@prefix : <http://example.org/agent#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Ontology Definition
+: rdf:type owl:Ontology ;
+  rdfs:label "Agent Ontology"@en ;
+  rdfs:comment "A simple ontology for describing agents and their capabilities"@en .
+
+# Classes
+:Agent rdf:type owl:Class ;
+    rdfs:label "Agent"@en ;
+    rdfs:comment "An autonomous entity that can perform actions"@en .
+
+:HumanAgent rdf:type owl:Class ;
+    rdfs:subClassOf :Agent ;
+    rdfs:label "Human Agent"@en ;
+    rdfs:comment "A human being acting as an agent"@en .
+
+:SoftwareAgent rdf:type owl:Class ;
+    rdfs:subClassOf :Agent ;
+    rdfs:label "Software Agent"@en ;
+    rdfs:comment "An autonomous software program"@en .
+
+:Capability rdf:type owl:Class ;
+    rdfs:label "Capability"@en ;
+    rdfs:comment "An ability or skill that an agent possesses"@en .
+
+:Task rdf:type owl:Class ;
+    rdfs:label "Task"@en ;
+    rdfs:comment "A specific piece of work to be done"@en .
+
+:Tool rdf:type owl:Class ;
+    rdfs:label "Tool"@en ;
+    rdfs:comment "An instrument that helps accomplish tasks"@en .
+
+# Object Properties
+:hasCapability rdf:type owl:ObjectProperty ;
+    rdfs:domain :Agent ;
+    rdfs:range :Capability ;
+    rdfs:label "has capability"@en ;
+    rdfs:comment "Relates an agent to its capabilities"@en .
+
+:canPerform rdf:type owl:ObjectProperty ;
+    rdfs:domain :Agent ;
+    rdfs:range :Task ;
+    rdfs:label "can perform"@en ;
+    rdfs:comment "Indicates that an agent can perform a specific task"@en .
+
+:usesTool rdf:type owl:ObjectProperty ;
+    rdfs:domain :Agent ;
+    rdfs:range :Tool ;
+    rdfs:label "uses tool"@en ;
+    rdfs:comment "Indicates that an agent uses a specific tool"@en .
+
+:requires rdf:type owl:ObjectProperty ;
+    rdfs:domain :Task ;
+    rdfs:range :Capability ;
+    rdfs:label "requires"@en ;
+    rdfs:comment "Indicates that a task requires a specific capability"@en .
+
+# Data Properties
+:hasName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Agent ;
+    rdfs:range xsd:string ;
+    rdfs:label "has name"@en ;
+    rdfs:comment "The name of an agent"@en .
+
+:hasDescription rdf:type owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "has description"@en ;
+    rdfs:comment "A textual description"@en .
+
+:hasPriority rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Task ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has priority"@en ;
+    rdfs:comment "The priority level of a task (higher number = higher priority)"@en .
+
+# Axioms
+:HumanAgent owl:disjointWith :SoftwareAgent .
+
+# Example Instances
+:alice rdf:type :HumanAgent ;
+    :hasName "Alice Smith" ;
+    :hasDescription "Data scientist with expertise in machine learning" ;
+    :hasCapability :data_analysis, :machine_learning .
+
+:chatbot rdf:type :SoftwareAgent ;
+    :hasName "Customer Service Bot" ;
+    :hasDescription "AI assistant for customer support" ;
+    :hasCapability :natural_language_processing, :information_retrieval .
+
+:data_analysis rdf:type :Capability ;
+    rdfs:label "Data Analysis"@en ;
+    :hasDescription "Ability to analyze and interpret data" .
+
+:machine_learning rdf:type :Capability ;
+    rdfs:label "Machine Learning"@en ;
+    :hasDescription "Ability to create and train ML models" .
+
+:natural_language_processing rdf:type :Capability ;
+    rdfs:label "Natural Language Processing"@en ;
+    :hasDescription "Ability to understand and generate human language" .
+
+:information_retrieval rdf:type :Capability ;
+    rdfs:label "Information Retrieval"@en ;
+    :hasDescription "Ability to find and extract relevant information" .
+
+:customer_inquiry rdf:type :Task ;
+    rdfs:label "Customer Inquiry"@en ;
+    :hasDescription "Responding to customer questions" ;
+    :hasPriority 2 ;
+    :requires :natural_language_processing, :information_retrieval .
+
+:data_modeling rdf:type :Task ;
+    rdfs:label "Data Modeling"@en ;
+    :hasDescription "Creating statistical or ML models from data" ;
+    :hasPriority 3 ;
+    :requires :data_analysis, :machine_learning .

@@ -1,0 +1,86 @@
+{
+  "@context": {
+    "@vocab": "http://example.org/ecommerce#",
+    "schema": "http://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "id": "@id",
+    "type": "@type",
+    "name": "schema:name",
+    "description": "schema:description",
+    "price": {"@id": "schema:price", "@type": "xsd:decimal"},
+    "category": {"@id": "hasCategory", "@type": "@id"},
+    "brand": {"@id": "schema:brand", "@type": "@id"},
+    "inStock": {"@id": "schema:availability", "@type": "xsd:boolean"},
+    "rating": {"@id": "schema:ratingValue", "@type": "xsd:float"}
+  },
+  "@graph": [
+    {
+      "id": "Product",
+      "type": "rdfs:Class",
+      "rdfs:label": "Product",
+      "rdfs:comment": "An item available for purchase"
+    },
+    {
+      "id": "Electronics",
+      "type": "rdfs:Class",
+      "rdfs:subClassOf": "Product",
+      "rdfs:label": "Electronics",
+      "rdfs:comment": "Electronic devices and gadgets"
+    },
+    {
+      "id": "Laptop",
+      "type": "rdfs:Class", 
+      "rdfs:subClassOf": "Electronics",
+      "rdfs:label": "Laptop",
+      "rdfs:comment": "Portable computer"
+    },
+    {
+      "id": "Brand",
+      "type": "rdfs:Class",
+      "rdfs:label": "Brand",
+      "rdfs:comment": "A product brand or manufacturer"
+    },
+    {
+      "id": "apple_macbook_pro",
+      "type": "Laptop",
+      "name": "MacBook Pro 16-inch",
+      "description": "High-performance laptop for professionals",
+      "price": 2499.99,
+      "brand": "apple_brand",
+      "inStock": true,
+      "rating": 4.8,
+      "schema:processor": "M3 Pro",
+      "schema:memory": "32GB",
+      "schema:storage": "1TB SSD"
+    },
+    {
+      "id": "dell_xps_13",
+      "type": "Laptop", 
+      "name": "Dell XPS 13",
+      "description": "Compact and powerful ultrabook",
+      "price": 1299.99,
+      "brand": "dell_brand",
+      "inStock": true,
+      "rating": 4.5,
+      "schema:processor": "Intel i7",
+      "schema:memory": "16GB",
+      "schema:storage": "512GB SSD"
+    },
+    {
+      "id": "apple_brand",
+      "type": "Brand",
+      "name": "Apple",
+      "description": "Technology company known for innovative products",
+      "schema:foundingDate": "1976-04-01"
+    },
+    {
+      "id": "dell_brand", 
+      "type": "Brand",
+      "name": "Dell Technologies",
+      "description": "Multinational computer technology company",
+      "schema:foundingDate": "1984-02-01"
+    }
+  ]
+}
