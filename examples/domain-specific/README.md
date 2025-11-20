@@ -1,53 +1,24 @@
 # Domain-Specific Examples
 
-This directory contains semantic models for specific domains, demonstrating how to apply ontology design principles to real-world scenarios.
+Semantic models for real-world domains.
 
-## Healthcare Ontology
+## Healthcare
 
-Models medical concepts, procedures, and patient care workflows for healthcare AI systems.
+**Models:** Patient records, procedures, provider capabilities, medications
 
-**Key Features:**
-- Patient records and medical history
-- Diagnostic procedures and treatments
-- Healthcare provider capabilities
-- Medical device and medication information
+**AI Use:** Clinical decision support, diagnosis assistance, workflow optimization
 
-**AI Applications:**
-- Clinical decision support systems
-- Medical diagnosis assistance
-- Treatment recommendation engines
-- Healthcare workflow optimization
+## Financial Services
 
-## Financial Services Ontology
+**Models:** Financial instruments, transactions, compliance, risk assessment
 
-Represents financial instruments, transactions, and regulatory compliance for fintech applications.
+**AI Use:** Trading systems, risk management, fraud detection, compliance automation
 
-**Key Features:**
-- Investment products and portfolios
-- Risk assessment models
-- Compliance and regulatory frameworks
-- Customer financial profiles
+## IoT & Smart Systems
 
-**AI Applications:**
-- Algorithmic trading systems
-- Risk management agents
-- Fraud detection systems
-- Regulatory compliance automation
+**Models:** Device capabilities, sensor data, automation rules, context
 
-## IoT and Smart Systems
-
-Models connected devices, sensors, and automation systems for smart environments.
-
-**Key Features:**
-- Device capabilities and specifications
-- Sensor data and measurement types
-- Automation rules and triggers
-- Environmental context modeling
-
-**AI Applications:**
-- Smart home automation
-- Industrial IoT optimization
-- Environmental monitoring systems
+**AI Use:** Smart home automation, industrial IoT, environmental monitoring
 - Predictive maintenance agents
 
 ## E-commerce and Retail

@@ -1,64 +1,56 @@
-# Ontology Design Best Practices
+# Quick Start Guide
 
-## Quick Start Guide
+## 1. Define Domain
 
-### 1. Define Your Domain
 - Identify key concepts and relationships
-- Understand your use cases
-- Gather requirements from stakeholders
+- Define use cases and requirements
 
-### 2. Choose Your Technology Stack
-- **OWL**: For complex logical reasoning
-- **RDF/RDFS**: For basic semantic relationships  
-- **JSON-LD**: For web-friendly linked data
-- **SPARQL**: For querying semantic data
+## 2. Choose Technology
 
-### 3. Design Principles
-- Keep it simple and focused
-- Use clear, descriptive names
+- **OWL** - Complex reasoning
+- **RDF/RDFS** - Basic relationships
+- **JSON-LD** - Web-friendly data
+- **SPARQL** - Queries
+
+## 3. Design Principles
+
+- Keep simple and focused
+- Use clear, descriptive naming
 - Build on existing standards
-- Document everything
+- Document thoroughly
 
-### 4. Validation
+## 4. Validate
+
 - Test with real data
 - Verify competency questions
-- Check for logical consistency
-- Get domain expert feedback
+- Check consistency
 
 ## Common Patterns
 
-### Agent Capability Pattern
+**Agent Capability:**
+
 ```turtle
 :Agent a owl:Class .
-:Capability a owl:Class .
 :hasCapability a owl:ObjectProperty ;
-    rdfs:domain :Agent ;
-    rdfs:range :Capability .
+    rdfs:domain :Agent ; rdfs:range :Capability .
 ```
 
-### Tool Description Pattern
+**Tool Description:**
+
 ```turtle
 :Tool a owl:Class .
 :canPerform a owl:ObjectProperty ;
-    rdfs:domain :Tool ;
-    rdfs:range :Task .
+    rdfs:domain :Tool ; rdfs:range :Task .
 ```
 
-## AI/ML Integration Tips
+## AI/ML Integration
 
-### For LLMs
-- Use rich textual descriptions
-- Create clear hierarchies
-- Provide context and examples
-- Use consistent naming conventions
+**LLMs:** Rich descriptions, clear hierarchies, consistent naming
 
-### For Agentic Systems
-- Model capabilities explicitly
-- Define clear input/output types
-- Specify preconditions and effects
-- Support reasoning about goals
+**Agents:** Explicit capabilities, clear I/O types, preconditions/effects
 
 ## Resources
+
 - [W3C OWL Guide](https://www.w3.org/TR/owl-guide/)
 - [RDF Primer](https://www.w3.org/TR/rdf-primer/)
-- [Protégé Tutorial](https://protege.stanford.edu/publications/ontology_development/ontology101.pdf)
+

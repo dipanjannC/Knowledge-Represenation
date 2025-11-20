@@ -1,52 +1,26 @@
 # Tools and Utilities
 
-This directory contains tools for working with semantic data models.
+Tools for working with semantic data models.
 
-## Validation Tools
+## Validation
+- SHACL validators for common patterns
+- OWL consistency checkers
 
-### SHACL Validator
-Basic SHACL shapes for validating common ontology patterns.
+## Conversion
+- Format converters (RDF/XML, Turtle, JSON-LD)
+- Schema mappers (database, API to ontology)
 
-### Consistency Checker
-Scripts for checking logical consistency in OWL ontologies.
+## Queries
+- SPARQL query library (capabilities, workflows, exploration)
+- Visual query builders
 
-## Conversion Tools
+## Development
+- Ontology templates (agents, workflows, enterprise, IoT)
+- Documentation generators
 
-### Format Converters
-- RDF/XML to Turtle converter
-- JSON-LD to RDF converter
-- Ontology format transformation utilities
+## Usage
 
-### Schema Mappers
-- Database schema to ontology mapping
-- API schema to semantic model conversion
-
-## Query Tools
-
-### SPARQL Query Library
-Common SPARQL query patterns for:
-- Agent capability discovery
-- Workflow optimization
-- Knowledge graph exploration
-
-### Query Builders
-Visual tools for constructing complex semantic queries.
-
-## Development Tools
-
-### Ontology Templates
-Ready-to-use templates for common domains:
-- Agent systems
-- Workflows
-- Enterprise data
-- IoT devices
-
-### Documentation Generators
-Tools for automatically generating ontology documentation.
-
-## Installation and Usage
-
-See individual tool directories for specific installation and usage instructions.
+See individual tool directories for setup instructions.
 
 Each tool includes:
 - Requirements and dependencies

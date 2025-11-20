@@ -1,140 +1,64 @@
-# Semantic Data Modelling
+# Knowledge Representation & Semantic Modeling
 
-A comprehensive repository for knowledge representation, ontologies, and formal definition languages across different domains.
+Practical guidelines and examples for building ontologies and semantic models that enhance LLM and agentic system capabilities.
 
-## 🎯 Purpose
+## Purpose
 
-This repository provides guidelines, examples, and methodologies for modeling and representing knowledge using formal semantic structures. It serves as a practical resource for understanding how to create robust knowledge representations that enable intelligent systems to reason about data and relationships.
+This repository provides methodologies for creating formal knowledge representations that enable intelligent systems to reason effectively about data and relationships.
 
-## 🚀 Why This Matters for Agentic Systems & LLMs
+## Why It Matters
 
-### Enhanced Reasoning Capabilities
+**For LLMs:**
 
-- **Structured Knowledge**: Formal ontologies provide LLMs with structured, unambiguous knowledge representations that go beyond natural language descriptions
-- **Logical Inference**: Enable automated reasoning and deduction through formal logic rules embedded in semantic models
-- **Consistency Validation**: Formal definitions help detect and prevent contradictions in knowledge bases
+- Reduces hallucination through structured knowledge
+- Enables accurate retrieval-augmented generation (RAG)
+- Provides verifiable knowledge structures for grounding outputs
 
-### Improved Agent Performance
+**For Agentic Systems:**
 
-- **Contextual Understanding**: Semantic models provide rich context that helps agents understand domain-specific concepts and relationships
-- **Multi-domain Integration**: Standardized ontologies enable agents to work across different domains with consistent knowledge representations
-- **Knowledge Transfer**: Well-structured semantic models facilitate knowledge sharing between different AI systems and agents
+- Facilitates tool selection and capability mapping
+- Enables workflow orchestration and goal decomposition
+- Supports multi-domain integration with consistent representations
 
-### LLM Integration Benefits
-
-- **Grounding**: Provide concrete, verifiable knowledge structures that ground LLM outputs in formal representations
-- **Retrieval Augmentation**: Enable sophisticated knowledge retrieval patterns for RAG (Retrieval-Augmented Generation) systems
-- **Prompt Enhancement**: Semantic models can generate structured prompts that guide LLMs toward more accurate and consistent responses
-- **Verification**: Formal semantics enable validation of LLM-generated content against established knowledge structures
-
-### Agentic Workflow Enhancement
-
-- **Tool Selection**: Semantic descriptions of tools and capabilities help agents choose appropriate tools for specific tasks
-- **Workflow Orchestration**: Formal process models enable agents to understand and execute complex multi-step workflows
-- **Goal Decomposition**: Hierarchical semantic models help agents break down complex goals into actionable sub-tasks
-
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
-├── docs/                    # Documentation and guidelines
-│   ├── guidelines/         # Best practices and methodologies
-│   └── tutorials/          # Step-by-step guides
-├── examples/               # Practical examples and case studies
-│   ├── ontologies/        # Sample ontology files
-│   ├── knowledge-graphs/  # Knowledge graph examples
-│   └── domain-specific/   # Domain-specific models
-├── templates/             # Reusable templates and patterns
-├── tools/                 # Utilities and validation tools
-└── use-cases/            # Real-world application scenarios
+├── docs/           # Guidelines and best practices
+├── examples/       # Ontologies, knowledge graphs, domain models
+├── templates/      # Reusable patterns
+├── tools/          # Validation and conversion utilities
+└── use-cases/      # Real-world applications
 ```
 
-## 🔧 Supported Technologies
+## Technologies
 
-### Formal Languages
+**Formats:** OWL, RDF/RDFS, Turtle, JSON-LD, SPARQL, SHACL
 
-- **OWL (Web Ontology Language)**: For complex ontological modeling
-- **RDF (Resource Description Framework)**: For basic semantic relationships
-- **RDFS (RDF Schema)**: For vocabulary definition
-- **Turtle/N3**: Human-readable RDF serialization
-- **SPARQL**: Query language for semantic data
-- **SHACL**: Shapes constraint language for data validation
+## Focus Areas
 
-### Knowledge Representation Formats
+- Domain modeling (healthcare, finance, IoT, enterprise)
+- Knowledge graph construction
+- AI/ML integration and semantic embeddings
+- Agentic system support (capabilities, workflows, coordination)
 
-- **JSON-LD**: Linked data in JSON format
-- **GraphQL Schema**: API-driven semantic definitions
-- **Schema.org**: Structured data for web content
-- **SKOS**: Simple Knowledge Organization System
+## Quick Start
 
-## 🎯 Key Focus Areas
+1. Explore `/examples` for practical implementations
+2. Review `/docs/guidelines` for best practices
+3. Use `/templates` for common patterns
+4. Apply `/tools` for validation
 
-### 1. Domain Modeling
+## Learning Path
 
-- Enterprise data models
-- Scientific domain ontologies
-- Healthcare and medical terminology
-- Financial services models
-- IoT and sensor data models
+1. RDF and semantic fundamentals
+2. OWL and ontology engineering
+3. Knowledge graphs and integration
+4. Advanced topics: reasoning, validation, optimization
 
-### 2. Knowledge Graph Construction
+## Resources
 
-- Entity relationship modeling
-- Graph schema design
-- Data integration patterns
-- Semantic data pipelines
-
-### 3. AI/ML Integration
-
-- Training data semantics
-- Model interpretability
-- Knowledge-guided learning
-- Semantic embeddings
-
-### 4. Agentic System Support
-
-- Agent capability modeling
-- Tool and service descriptions
-- Workflow and process models
-- Multi-agent coordination schemas
-
-## 🚀 Quick Start
-
-1. **Explore Examples**: Start with the `/examples` directory to see practical implementations
-2. **Read Guidelines**: Check `/docs/guidelines` for best practices
-3. **Use Templates**: Leverage `/templates` for common patterns
-4. **Apply Tools**: Utilize `/tools` for validation and conversion
-
-## 📚 Learning Path
-
-1. **Fundamentals**: Understand RDF and basic semantic concepts
-2. **Ontology Design**: Learn OWL and ontology engineering principles
-3. **Knowledge Graphs**: Explore graph-based knowledge representation
-4. **Integration**: Connect semantic models with AI/ML systems
-5. **Advanced Topics**: Reasoning, validation, and optimization
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our contributing guidelines for:
-
-- Adding new examples
-- Improving documentation
-- Sharing use cases
-- Proposing new templates
-
-## 📖 Resources
-
-- [W3C Semantic Web Standards](https://www.w3.org/standards/semanticweb/)
-- [OWL Reference](https://www.w3.org/TR/owl-ref/)
+- [W3C Semantic Web](https://www.w3.org/standards/semanticweb/)
+- [OWL Guide](https://www.w3.org/TR/owl-guide/)
 - [RDF Primer](https://www.w3.org/TR/rdf-primer/)
-- [SPARQL Tutorial](https://www.w3.org/TR/sparql11-query/)
+- [SPARQL Reference](https://www.w3.org/TR/sparql11-query/)
 
-## 🔗 Related Projects
-
-- [Schema.org](https://schema.org/)
-- [DBpedia](https://www.dbpedia.org/)
-- [Wikidata](https://www.wikidata.org/)
-- [OpenCyc](http://www.cyc.com/opencyc/)
-
----
-
-*This repository is designed to bridge the gap between formal knowledge representation and practical AI system implementation, enabling more intelligent and reliable agentic systems.*

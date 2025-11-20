@@ -1,53 +1,40 @@
 # Ontology Template
 
-## Basic Information
+## Metadata
 - **Name**: [Ontology Name]
-- **Version**: [Version Number]
-- **Purpose**: [Brief description of what this ontology models]
-- **Domain**: [Target domain or application area]
-- **Author**: [Creator name/organization]
-- **Date**: [Creation/modification date]
+- **Version**: [Version]
+- **Purpose**: [Description]
+- **Author**: [Name]
 
-## Namespace Declaration
+## Namespaces
 ```turtle
 @prefix : <http://example.org/[domain]#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 ```
 
-## Ontology Declaration
+## Ontology
 ```turtle
-: rdf:type owl:Ontology ;
-  rdfs:label "[Ontology Name]"@en ;
-  rdfs:comment "[Detailed description]"@en ;
-  owl:versionInfo "[Version]" .
+: a owl:Ontology ;
+  rdfs:label "[Name]"@en ;
+  rdfs:comment "[Description]"@en .
 ```
 
-## Core Classes
+## Classes
 ```turtle
-# Main domain class
-:[MainClass] rdf:type owl:Class ;
-    rdfs:label "[Class Label]"@en ;
-    rdfs:comment "[Class description]"@en .
+:[MainClass] a owl:Class ;
+    rdfs:label "[Label]"@en .
 
-# Subclasses
-:[SubClass1] rdf:type owl:Class ;
-    rdfs:subClassOf :[MainClass] ;
-    rdfs:label "[Subclass Label]"@en ;
-    rdfs:comment "[Subclass description]"@en .
+:[SubClass] a owl:Class ;
+    rdfs:subClassOf :[MainClass] .
 ```
 
 ## Properties
-
-### Object Properties
 ```turtle
-:[objectProperty] rdf:type owl:ObjectProperty ;
+:[property] a owl:ObjectProperty ;
     rdfs:domain :[DomainClass] ;
-    rdfs:range :[RangeClass] ;
-    rdfs:label "[property label]"@en ;
-    rdfs:comment "[property description]"@en .
+    rdfs:range :[RangeClass] .
 ```
 
 ### Data Properties
