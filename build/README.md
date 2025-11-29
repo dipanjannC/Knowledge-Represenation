@@ -119,8 +119,8 @@ model = "gemini/gemini-1.5-pro"  # Or other litellm-supported models
 
 ## Benefits
 
-✅ **Automated**: No manual alignment creation needed  
-✅ **Consistent**: Uses standard ontology knowledge  
-✅ **Flexible**: Easy to switch between frameworks  
-✅ **Modular**: Clean class-based architecture  
-✅ **Extensible**: Simple to add new frameworks or models
+**Automated**: No manual alignment creation needed  
+**Consistent**: Uses standard ontology knowledge  
+**Flexible**: Easy to switch between frameworks  
+**Modular**: Clean class-based architecture  
+**Extensible**: Simple to add new frameworks or models
