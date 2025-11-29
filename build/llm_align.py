@@ -1,21 +1,27 @@
-import os
+"""LLM-based ontology alignment system."""
+
 import json
+from pathlib import Path
 from rdflib import Graph, RDF, RDFS, OWL
 from litellm import completion
+
+from utils import Logger, FileManager, ConfigManager
 
 
 class OntologyExtractor:
     """Extracts entities from RDF graphs."""
     
-    def __init__(self, graph_path):
+    def __init__(self, graph_path: Path, logger: Logger):
         self.graph_path = graph_path
+        self.logger = logger
         self.graph = None
         self.entities = {"classes": [], "properties": []}
     
     def load_graph(self):
         """Load the RDF graph from file."""
+        self.logger.info(f"Loading graph from: {self.graph_path}")
         self.graph = Graph()
-        self.graph.parse(self.graph_path, format="turtle")
+        self.graph.parse(str(self.graph_path), format="turtle")
     
     def extract_entities(self):
         """Extract classes and properties from the graph."""
@@ -24,6 +30,11 @@ class OntologyExtractor:
         
         self._extract_classes()
         self._extract_properties()
+        
+        self.logger.info(
+            f"Extracted {len(self.entities['classes'])} classes and "
+            f"{len(self.entities['properties'])} properties"
+        )
         return self.entities
     
     def _extract_classes(self):
@@ -111,8 +122,9 @@ Key namespace: https://saref.etsi.org/core/"""
 class LLMAlignmentGenerator:
     """Generates alignment mappings using an LLM."""
     
-    def __init__(self, model="gemini/gemini-1.5-flash"):
+    def __init__(self, model: str, logger: Logger):
         self.model = model
+        self.logger = logger
     
     def generate_alignments(self, entities, framework, max_entities=10):
         """Generate alignment suggestions using LLM."""
@@ -126,6 +138,8 @@ class LLMAlignmentGenerator:
         
         prompt = self._build_prompt(framework, framework_context, class_list)
         
+        self.logger.info(f"Generating alignments with {self.model} for framework: {framework}")
+        
         try:
             response = completion(
                 model=self.model,
@@ -134,9 +148,13 @@ class LLMAlignmentGenerator:
             )
             
             content = response.choices[0].message.content
-            return self._parse_response(content)
+            alignments = self._parse_response(content)
+            
+            self.logger.info(f"Generated {len(alignments.get('alignments', []))} alignment suggestions")
+            return alignments
+            
         except Exception as e:
-            print(f"Error calling LLM: {e}")
+            self.logger.error(f"Error calling LLM: {e}")
             return {"alignments": []}
     
     @staticmethod
@@ -179,19 +197,22 @@ Only include alignments with medium or high confidence."""
 class TTLGenerator:
     """Generates TTL files from alignment data."""
     
-    def __init__(self, framework):
+    def __init__(self, framework: str, logger: Logger):
         self.framework = framework
+        self.logger = logger
         self.prefixes = FrameworkContext.get_prefixes(framework)
     
-    def generate_ttl(self, alignments, output_path):
+    def generate_ttl(self, alignments, output_path: Path):
         """Generate TTL file from alignment suggestions."""
+        self.logger.info("Creating TTL file...")
+        
         ttl_content = self._build_header()
         ttl_content += self._build_alignments(alignments)
         
         with open(output_path, 'w') as f:
             f.write(ttl_content)
         
-        print(f"Generated alignment file: {output_path}")
+        self.logger.info(f"Generated alignment file: {output_path}")
     
     def _build_header(self):
         """Build TTL header with prefixes."""
@@ -233,59 +254,71 @@ class TTLGenerator:
 class OntologyAligner:
     """Main orchestrator for ontology alignment process."""
     
-    def __init__(self, framework="gufo", model="gemini/gemini-1.5-flash"):
+    def __init__(self, framework: str, model: str, logger: Logger, file_manager: FileManager):
         self.framework = framework
         self.model = model
+        self.logger = logger
+        self.file_manager = file_manager
+        
         self.extractor = None
-        self.llm_generator = LLMAlignmentGenerator(model)
-        self.ttl_generator = TTLGenerator(framework)
+        self.llm_generator = LLMAlignmentGenerator(model, logger)
+        self.ttl_generator = TTLGenerator(framework, logger)
     
-    def align(self, graph_path, output_path):
+    def align(self, graph_path: Path, output_path: Path):
         """Execute the full alignment workflow."""
+        # Validate input file
+        self.file_manager.validate_file(graph_path, "Composite graph")
+        
         # Extract entities
-        print("Extracting entities from composite graph...")
-        self.extractor = OntologyExtractor(graph_path)
+        self.extractor = OntologyExtractor(graph_path, self.logger)
         entities = self.extractor.extract_entities()
-        print(f"Found {len(entities['classes'])} classes and {len(entities['properties'])} properties")
         
         # Generate alignments
-        print(f"\nGenerating alignments with {self.model} for framework: {self.framework}")
         alignments = self.llm_generator.generate_alignments(entities, self.framework)
-        print(f"\nGenerated {len(alignments.get('alignments', []))} alignment suggestions")
+        
+        # Ensure output directory exists
+        self.file_manager.ensure_dir_exists(output_path.parent)
         
         # Create TTL file
-        print("\nCreating TTL file...")
         self.ttl_generator.generate_ttl(alignments, output_path)
         
-        print("\nDone! You can now run align_graph.py to use these alignments.")
+        self.logger.info("Alignment process completed successfully!")
 
 
 def main():
-    # Check for API key
-    api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
-    if not api_key:
-        print("ERROR: No API key found!")
-        print("Please set GEMINI_API_KEY or GOOGLE_API_KEY environment variable.")
-        print("Example: export GEMINI_API_KEY='your-key-here'")
-        return
+    """Main entry point."""
+    # Set up utilities
+    logger = Logger()
+    file_manager = FileManager()
     
-    # Configuration
-    framework = "gufo"  # Options: "fibo", "gufo", "saref"
-    model = "gemini/gemini-1.5-flash"  # LLM model to use
+    try:
+        # Validate API key
+        ConfigManager.validate_api_key()
+        
+        # Configuration
+        framework = "gufo"  # Options: "fibo", "gufo", "saref"
+        model = "gemini/gemini-1.5-flash"  # LLM model to use
+        
+        # Validate framework
+        ConfigManager.validate_framework(framework)
+        
+        # Get paths
+        composite_graph_path = file_manager.get_composite_graph_path()
+        output_path = file_manager.get_alignment_output_path(framework)
+        
+        # Execute alignment
+        aligner = OntologyAligner(framework, model, logger, file_manager)
+        aligner.align(composite_graph_path, output_path)
+        
+    except (ValueError, FileNotFoundError) as e:
+        logger.error(str(e))
+        return 1
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+        return 1
     
-    # Paths
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    project_root = os.path.dirname(script_dir)
-    
-    composite_graph_path = os.path.join(project_root, "build", "data", "composite_knowledge_graph.ttl")
-    output_dir = os.path.join(project_root, "build", "alignment", framework)
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, "llm_generated_alignment.ttl")
-    
-    # Execute alignment
-    aligner = OntologyAligner(framework=framework, model=model)
-    aligner.align(composite_graph_path, output_path)
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    exit(main())
