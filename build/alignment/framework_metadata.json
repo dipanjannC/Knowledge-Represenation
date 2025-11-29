@@ -1,0 +1,5 @@
+{
+    "fibo": "https://spec.edmcouncil.org/fibo/ontology/master/latest/FIBO.ttl",
+    "gufo": "http://purl.org/nemo/gufo",
+    "saref": "https://saref.etsi.org/core/v3.1.1/saref.ttl"
+}

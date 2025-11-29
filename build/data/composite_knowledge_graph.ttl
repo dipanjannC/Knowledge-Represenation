@@ -1,0 +1,163 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/SmartHomeOnto#> .
+@prefix default1: <http://www.semanticweb.org/ontologies/2024/11/PersonalFinanceOnto#> .
+@prefix default2: <http://www.semanticweb.org/ontologies/2024/11/SocialBiasOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+default1:CheckingAccount a owl:Class ;
+    rdfs:comment "Account for daily transactions" ;
+    rdfs:subClassOf default1:Account .
+
+default1:CreditCardAccount a owl:Class ;
+    rdfs:comment "Account representing a line of credit" ;
+    rdfs:subClassOf default1:Account .
+
+default1:Expense a owl:Class ;
+    rdfs:comment "Money spent" ;
+    rdfs:subClassOf default1:Transaction .
+
+default1:Income a owl:Class ;
+    rdfs:comment "Money received" ;
+    rdfs:subClassOf default1:Transaction .
+
+default1:SavingsAccount a owl:Class ;
+    rdfs:comment "Account for saving money with interest" ;
+    rdfs:subClassOf default1:Account .
+
+default1:Transfer a owl:Class ;
+    rdfs:comment "Movement of funds between accounts" ;
+    rdfs:subClassOf default1:Transaction .
+
+default1:hasBalance a owl:DatatypeProperty ;
+    rdfs:comment "Current balance of the account" ;
+    rdfs:domain default1:Account ;
+    rdfs:range xsd:decimal .
+
+default1:linkedToAccount a owl:ObjectProperty ;
+    rdfs:comment "Associates a transaction with a financial account" ;
+    rdfs:domain default1:Transaction ;
+    rdfs:range default1:Account .
+
+default1:transactionAmount a owl:DatatypeProperty ;
+    rdfs:comment "Monetary value of the transaction" ;
+    rdfs:domain default1:Transaction ;
+    rdfs:range xsd:decimal .
+
+default1:transactionDate a owl:DatatypeProperty ;
+    rdfs:comment "Date and time when the transaction occurred" ;
+    rdfs:domain default1:Transaction ;
+    rdfs:range xsd:dateTime .
+
+:Bathroom a owl:Class ;
+    rdfs:subClassOf :Room .
+
+:Bedroom a owl:Class ;
+    rdfs:subClassOf :Room .
+
+:Kitchen a owl:Class ;
+    rdfs:subClassOf :Room .
+
+:LightSensor a owl:Class ;
+    rdfs:comment "Sensor that measures light intensity" ;
+    rdfs:subClassOf :Sensor .
+
+:Lighting a owl:Class ;
+    rdfs:comment "Devices providing illumination" ;
+    rdfs:subClassOf :Device .
+
+:LivingRoom a owl:Class ;
+    rdfs:subClassOf :Room .
+
+:MotionSensor a owl:Class ;
+    rdfs:comment "Sensor that detects movement" ;
+    rdfs:subClassOf :Sensor .
+
+:SecurityCamera a owl:Class ;
+    rdfs:comment "Video camera for surveillance" ;
+    rdfs:subClassOf :Device .
+
+:SmartLock a owl:Class ;
+    rdfs:comment "Electronic locking device" ;
+    rdfs:subClassOf :Device .
+
+:TemperatureSensor a owl:Class ;
+    rdfs:comment "Sensor that measures ambient temperature" ;
+    rdfs:subClassOf :Sensor .
+
+:controls a owl:ObjectProperty ;
+    rdfs:comment "Relates a controller to the device it operates" ;
+    rdfs:domain :Controller ;
+    rdfs:range :Device .
+
+:deviceState a owl:DatatypeProperty ;
+    rdfs:comment "Current state of the device (e.g., On, Off, Standby)" ;
+    rdfs:domain :Device ;
+    rdfs:range xsd:string .
+
+:hasSensor a owl:ObjectProperty ;
+    rdfs:comment "Relates a device to its sensors" ;
+    rdfs:domain :Device ;
+    rdfs:range :Sensor .
+
+:locatedIn a owl:ObjectProperty ;
+    rdfs:comment "Specifies the room where a device is located" ;
+    rdfs:domain :Device ;
+    rdfs:range :Room .
+
+:temperatureSetting a owl:DatatypeProperty ;
+    rdfs:comment "Temperature setting for climate control devices" ;
+    rdfs:domain :Thermostat ;
+    rdfs:range xsd:float .
+
+default2:AgeBias a owl:Class ;
+    rdfs:comment "Prejudice or discrimination based on age" ;
+    rdfs:subClassOf default2:BiasType .
+
+default2:GenderBias a owl:Class ;
+    rdfs:comment "Prejudice or discrimination based on gender" ;
+    rdfs:subClassOf default2:BiasType .
+
+default2:RacialBias a owl:Class ;
+    rdfs:comment "Prejudice or discrimination based on race or ethnicity" ;
+    rdfs:subClassOf default2:BiasType .
+
+default2:SocioeconomicBias a owl:Class ;
+    rdfs:comment "Prejudice based on social or economic status" ;
+    rdfs:subClassOf default2:BiasType .
+
+default2:biasSeverity a owl:DatatypeProperty ;
+    rdfs:comment "Qualitative assessment of bias severity (e.g., High, Medium, Low)" ;
+    rdfs:domain default2:BiasType ;
+    rdfs:range xsd:string .
+
+default2:detectionMethod a owl:DatatypeProperty ;
+    rdfs:comment "Method used to identify this type of bias" ;
+    rdfs:domain default2:BiasType ;
+    rdfs:range xsd:string .
+
+:Controller a owl:Class ;
+    rdfs:comment "A device or interface used to control other devices" .
+
+:Thermostat a owl:Class ;
+    rdfs:comment "Device for regulating temperature" ;
+    rdfs:subClassOf :Device .
+
+:Sensor a owl:Class ;
+    rdfs:comment "A device that detects or measures a physical property" .
+
+default1:Account a owl:Class ;
+    rdfs:comment "A financial arrangement for holding funds" .
+
+:Room a owl:Class ;
+    rdfs:comment "A distinct space within the home" .
+
+default1:Transaction a owl:Class ;
+    rdfs:comment "An exchange or transfer of funds" .
+
+default2:BiasType a owl:Class ;
+    rdfs:comment "A category of systematic error or unfairness" .
+
+:Device a owl:Class ;
+    rdfs:comment "Any physical or virtual device in the smart home" .
+
