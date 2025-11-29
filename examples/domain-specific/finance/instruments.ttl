@@ -1,0 +1,61 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/InvestmentFinanceOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ========================================
+# INSTRUMENT CLASSES
+# ========================================
+
+:InvestmentInstrument rdf:type owl:Class ;
+    rdfs:comment "A tradable asset of any kind" .
+
+:Issuer rdf:type owl:Class ;
+    rdfs:comment "Legal entity that develops, registers and sells securities to finance its operations" .
+
+:Stock rdf:type owl:Class ;
+    rdfs:subClassOf :InvestmentInstrument ;
+    rdfs:comment "Security that represents the ownership of a fraction of a corporation" .
+
+:Bond rdf:type owl:Class ;
+    rdfs:subClassOf :InvestmentInstrument ;
+    rdfs:comment "Fixed income instrument that represents a loan made by an investor to a borrower" .
+
+:MutualFund rdf:type owl:Class ;
+    rdfs:subClassOf :InvestmentInstrument ;
+    rdfs:comment "Investment vehicle made up of a pool of money collected from many investors" .
+
+:ETF rdf:type owl:Class ;
+    rdfs:subClassOf :InvestmentInstrument ;
+    rdfs:comment "Exchange-Traded Fund, a type of pooled investment security" .
+
+
+# ========================================
+# INSTRUMENT PROPERTIES
+# ========================================
+
+:issuedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain :InvestmentInstrument ;
+    rdfs:range :Issuer ;
+    rdfs:comment "Entity that issued the investment instrument" .
+
+:currentPrice rdf:type owl:DatatypeProperty ;
+    rdfs:domain :InvestmentInstrument ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Current market price of the instrument" .
+
+:dividendYield rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Stock ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Annual dividend payments divided by price" .
+
+:couponRate rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Bond ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Interest rate paid by the bond issuer" .
+
+:maturityDate rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Bond ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "Date when the bond principal is due" .

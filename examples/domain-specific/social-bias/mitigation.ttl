@@ -1,0 +1,33 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/SocialBiasOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# ========================================
+# MITIGATION CLASSES
+# ========================================
+
+:MitigationStrategy rdf:type owl:Class ;
+    rdfs:comment "Approach or technique to reduce bias" .
+
+:DataBalancing rdf:type owl:Class ;
+    rdfs:subClassOf :MitigationStrategy ;
+    rdfs:comment "Techniques to ensure training data represents all groups fairly" .
+
+:AlgorithmicFairness rdf:type owl:Class ;
+    rdfs:subClassOf :MitigationStrategy ;
+    rdfs:comment "Constraints added to algorithms to ensure fair outcomes" .
+
+:HumanInTheLoop rdf:type owl:Class ;
+    rdfs:subClassOf :MitigationStrategy ;
+    rdfs:comment "Involving human judgment in critical decision points" .
+
+
+# ========================================
+# MITIGATION PROPERTIES
+# ========================================
+
+:mitigatedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain :BiasType ;
+    rdfs:range :MitigationStrategy ;
+    rdfs:comment "Links a bias to strategies that can reduce or eliminate it" .

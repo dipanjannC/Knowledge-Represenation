@@ -1,0 +1,35 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/PersonalFinanceOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ========================================
+# BUDGET CLASSES
+# ========================================
+
+:Budget rdf:type owl:Class ;
+    rdfs:comment "A plan for spending over a period of time" .
+
+:Category rdf:type owl:Class ;
+    rdfs:comment "A classification for transactions (e.g., Groceries, Rent)" .
+
+
+# ========================================
+# BUDGET PROPERTIES
+# ========================================
+
+:budgetLimit rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Budget ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Maximum spending limit for a budget period" .
+
+:belongsToCategory rdf:type owl:ObjectProperty ;
+    rdfs:domain :Transaction ;
+    rdfs:range :Category ;
+    rdfs:comment "Classifies a transaction into a specific category" .
+
+:hasBudget rdf:type owl:ObjectProperty ;
+    rdfs:domain :Category ;
+    rdfs:range :Budget ;
+    rdfs:comment "Associates a category with a budget limit" .

@@ -1,0 +1,29 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/InvestmentFinanceOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# ========================================
+# PORTFOLIO CLASSES
+# ========================================
+
+:Investor rdf:type owl:Class ;
+    rdfs:comment "Individual or entity that allocates capital with the expectation of a future financial return" .
+
+:Portfolio rdf:type owl:Class ;
+    rdfs:comment "A collection of financial investments like stocks, bonds, commodities, cash, and cash equivalents" .
+
+
+# ========================================
+# PORTFOLIO PROPERTIES
+# ========================================
+
+:ownedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain :Portfolio ;
+    rdfs:range :Investor ;
+    rdfs:comment "Identifies the owner of the investment portfolio" .
+
+:holds rdf:type owl:ObjectProperty ;
+    rdfs:domain :Portfolio ;
+    rdfs:range :InvestmentInstrument ;
+    rdfs:comment "Indicates that a portfolio contains a specific investment instrument" .

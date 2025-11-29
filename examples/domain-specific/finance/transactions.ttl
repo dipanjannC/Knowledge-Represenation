@@ -1,0 +1,44 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/PersonalFinanceOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ========================================
+# TRANSACTION CLASSES
+# ========================================
+
+:Transaction rdf:type owl:Class ;
+    rdfs:comment "An exchange or transfer of funds" .
+
+:Income rdf:type owl:Class ;
+    rdfs:subClassOf :Transaction ;
+    rdfs:comment "Money received" .
+
+:Expense rdf:type owl:Class ;
+    rdfs:subClassOf :Transaction ;
+    rdfs:comment "Money spent" .
+
+:Transfer rdf:type owl:Class ;
+    rdfs:subClassOf :Transaction ;
+    rdfs:comment "Movement of funds between accounts" .
+
+
+# ========================================
+# TRANSACTION PROPERTIES
+# ========================================
+
+:transactionAmount rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Transaction ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Monetary value of the transaction" .
+
+:transactionDate rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Transaction ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "Date and time when the transaction occurred" .
+
+:linkedToAccount rdf:type owl:ObjectProperty ;
+    rdfs:domain :Transaction ;
+    rdfs:range :Account ;
+    rdfs:comment "Associates a transaction with a financial account" .

@@ -1,0 +1,35 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/CorporateFinanceOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ========================================
+# ASSET CLASSES
+# ========================================
+
+:Asset rdf:type owl:Class ;
+    rdfs:comment "Resource with economic value that an individual, corporation, or country owns or controls" .
+
+:TangibleAsset rdf:type owl:Class ;
+    rdfs:subClassOf :Asset ;
+    rdfs:comment "Physical assets like buildings, machinery, inventory" .
+
+:IntangibleAsset rdf:type owl:Class ;
+    rdfs:subClassOf :Asset ;
+    rdfs:comment "Non-physical assets like patents, trademarks, goodwill" .
+
+
+# ========================================
+# ASSET PROPERTIES
+# ========================================
+
+:ownsAsset rdf:type owl:ObjectProperty ;
+    rdfs:domain :Company ;
+    rdfs:range :Asset ;
+    rdfs:comment "Indicates assets owned by the company" .
+
+:assetValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Asset ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Monetary value of an asset" .

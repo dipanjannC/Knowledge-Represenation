@@ -1,0 +1,34 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/PersonalFinanceOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ========================================
+# ACCOUNT CLASSES
+# ========================================
+
+:Account rdf:type owl:Class ;
+    rdfs:comment "A financial arrangement for holding funds" .
+
+:CheckingAccount rdf:type owl:Class ;
+    rdfs:subClassOf :Account ;
+    rdfs:comment "Account for daily transactions" .
+
+:SavingsAccount rdf:type owl:Class ;
+    rdfs:subClassOf :Account ;
+    rdfs:comment "Account for saving money with interest" .
+
+:CreditCardAccount rdf:type owl:Class ;
+    rdfs:subClassOf :Account ;
+    rdfs:comment "Account representing a line of credit" .
+
+
+# ========================================
+# ACCOUNT PROPERTIES
+# ========================================
+
+:hasBalance rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Account ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Current balance of the account" .

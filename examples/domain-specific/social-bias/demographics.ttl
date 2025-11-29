@@ -1,0 +1,29 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/SocialBiasOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# ========================================
+# DEMOGRAPHIC CLASSES
+# ========================================
+
+:DemographicGroup rdf:type owl:Class ;
+    rdfs:comment "A group of people sharing a common characteristic" .
+
+:Stereotype rdf:type owl:Class ;
+    rdfs:comment "A widely held but fixed and oversimplified image or idea" .
+
+
+# ========================================
+# DEMOGRAPHIC PROPERTIES
+# ========================================
+
+:affectsGroup rdf:type owl:ObjectProperty ;
+    rdfs:domain :BiasType ;
+    rdfs:range :DemographicGroup ;
+    rdfs:comment "Indicates which demographic group is negatively impacted by a bias" .
+
+:manifestsAs rdf:type owl:ObjectProperty ;
+    rdfs:domain :BiasType ;
+    rdfs:range :Stereotype ;
+    rdfs:comment "Describes how a bias is expressed through stereotypes" .

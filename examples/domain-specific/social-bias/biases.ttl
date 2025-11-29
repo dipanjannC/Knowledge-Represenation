@@ -1,0 +1,43 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/SocialBiasOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ========================================
+# BIAS CLASSES
+# ========================================
+
+:BiasType rdf:type owl:Class ;
+    rdfs:comment "A category of systematic error or unfairness" .
+
+:GenderBias rdf:type owl:Class ;
+    rdfs:subClassOf :BiasType ;
+    rdfs:comment "Prejudice or discrimination based on gender" .
+
+:RacialBias rdf:type owl:Class ;
+    rdfs:subClassOf :BiasType ;
+    rdfs:comment "Prejudice or discrimination based on race or ethnicity" .
+
+:AgeBias rdf:type owl:Class ;
+    rdfs:subClassOf :BiasType ;
+    rdfs:comment "Prejudice or discrimination based on age" .
+
+:SocioeconomicBias rdf:type owl:Class ;
+    rdfs:subClassOf :BiasType ;
+    rdfs:comment "Prejudice based on social or economic status" .
+
+
+# ========================================
+# BIAS PROPERTIES
+# ========================================
+
+:biasSeverity rdf:type owl:DatatypeProperty ;
+    rdfs:domain :BiasType ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Qualitative assessment of bias severity (e.g., High, Medium, Low)" .
+
+:detectionMethod rdf:type owl:DatatypeProperty ;
+    rdfs:domain :BiasType ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Method used to identify this type of bias" .

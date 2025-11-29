@@ -1,0 +1,40 @@
+@prefix : <http://www.semanticweb.org/ontologies/2024/11/SmartHomeOnto#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# ========================================
+# CORE CLASSES
+# ========================================
+
+:Device rdf:type owl:Class ;
+    rdfs:comment "Any physical or virtual device in the smart home" .
+
+:Sensor rdf:type owl:Class ;
+    rdfs:comment "A device that detects or measures a physical property" .
+
+:Room rdf:type owl:Class ;
+    rdfs:comment "A distinct space within the home" .
+
+:Controller rdf:type owl:Class ;
+    rdfs:comment "A device or interface used to control other devices" .
+
+
+# ========================================
+# CORE PROPERTIES
+# ========================================
+
+:locatedIn rdf:type owl:ObjectProperty ;
+    rdfs:domain :Device ;
+    rdfs:range :Room ;
+    rdfs:comment "Specifies the room where a device is located" .
+
+:hasSensor rdf:type owl:ObjectProperty ;
+    rdfs:domain :Device ;
+    rdfs:range :Sensor ;
+    rdfs:comment "Relates a device to its sensors" .
+
+:controls rdf:type owl:ObjectProperty ;
+    rdfs:domain :Controller ;
+    rdfs:range :Device ;
+    rdfs:comment "Relates a controller to the device it operates" .

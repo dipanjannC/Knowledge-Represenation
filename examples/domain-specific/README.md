@@ -50,3 +50,7 @@ Each example includes:
 - Documentation and design rationale
 - Example queries and use cases
 - Integration guidelines for AI systems
+
+## Standards and Alignment
+
+For information on how these examples align with standard ontologies (like SAREF, FIBO, etc.), please refer to [standards_research.md](standards_research.md).
