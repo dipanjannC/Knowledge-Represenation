@@ -1,64 +1,93 @@
-# Knowledge Representation & Semantic Modeling
+# Knowledge Representation - Ontology Alignment System
 
-Practical guidelines and examples for building ontologies and semantic models that enhance LLM and agentic system capabilities.
+This project provides an automated ontology alignment system with LLM integration for aligning custom ontologies with standard frameworks (FIBO, gUFO, SAREF).
 
-## Purpose
+## Installation
 
-This repository provides methodologies for creating formal knowledge representations that enable intelligent systems to reason effectively about data and relationships.
+### Using uv (Recommended)
 
-## Why It Matters
+```bash
+# Install uv if you haven't already
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-**For LLMs:**
+# Clone the repository
+git clone https://github.com/dipanjannC/Knowledge-Represenation.git
+cd Knowledge-Represenation
 
-- Reduces hallucination through structured knowledge
-- Enables accurate retrieval-augmented generation (RAG)
-- Provides verifiable knowledge structures for grounding outputs
+# Create virtual environment and install dependencies
+uv sync
 
-**For Agentic Systems:**
-
-- Facilitates tool selection and capability mapping
-- Enables workflow orchestration and goal decomposition
-- Supports multi-domain integration with consistent representations
-
-## Repository Structure
-
-```text
-├── docs/           # Guidelines and best practices
-├── examples/       # Ontologies, knowledge graphs, domain models
-├── templates/      # Reusable patterns
-├── tools/          # Validation and conversion utilities
-└── use-cases/      # Real-world applications
+# Activate the virtual environment
+source .venv/bin/activate  # On Unix/macOS
+# or
+.venv\Scripts\activate  # On Windows
 ```
 
-## Technologies
+### Manual Installation
 
-**Formats:** OWL, RDF/RDFS, Turtle, JSON-LD, SPARQL, SHACL
+```bash
+# Create virtual environment
+python -m venv .venv
+source .venv/bin/activate
 
-## Focus Areas
+# Install dependencies
+pip install rdflib litellm
+```
 
-- Domain modeling (healthcare, finance, IoT, enterprise)
-- Knowledge graph construction
-- AI/ML integration and semantic embeddings
-- Agentic system support (capabilities, workflows, coordination)
+## Dependencies
+
+- **rdflib** (>=7.1.1): RDF graph manipulation and parsing
+- **litellm** (>=1.80.0): Unified LLM API interface
+
+### Optional Development Dependencies
+
+- **pytest** (>=8.0.0): Testing framework
+- **black** (>=24.0.0): Code formatter
+- **ruff** (>=0.8.0): Fast Python linter
 
 ## Quick Start
 
-1. Explore `/examples` for practical implementations
-2. Review `/docs/guidelines` for best practices
-3. Use `/templates` for common patterns
-4. Apply `/tools` for validation
+1. **Set up API key**:
+   ```bash
+   export GEMINI_API_KEY='your-gemini-api-key'
+   ```
 
-## Learning Path
+2. **Build composite graph**:
+   ```bash
+   python build/build_graph.py
+   ```
 
-1. RDF and semantic fundamentals
-2. OWL and ontology engineering
-3. Knowledge graphs and integration
-4. Advanced topics: reasoning, validation, optimization
+3. **Generate alignments**:
+   ```bash
+   python build/llm_align.py
+   ```
 
-## Resources
+## Project Structure
 
-- [W3C Semantic Web](https://www.w3.org/standards/semanticweb/)
-- [OWL Guide](https://www.w3.org/TR/owl-guide/)
-- [RDF Primer](https://www.w3.org/TR/rdf-primer/)
-- [SPARQL Reference](https://www.w3.org/TR/sparql11-query/)
+```
+.
+├── build/                  # Build scripts and alignment system
+│   ├── llm_align.py       # LLM-based alignment generator
+│   ├── build_graph.py     # Composite graph builder
+│   ├── alignment/         # Framework metadata and alignments
+│   └── data/              # Generated graphs
+├── examples/              # Domain-specific ontologies
+│   └── domain-specific/   # Modular TTL files
+├── templates/             # Ontology templates
+└── pyproject.toml         # Project dependencies
+```
 
+## Features
+
+- **Automated Alignment**: LLM-generated mappings between ontologies
+- **Multiple Frameworks**: Support for FIBO, gUFO, and SAREF
+- **Modular Architecture**: Clean class-based design
+- **Flexible Configuration**: Easy framework and model selection
+
+## Documentation
+
+See [build/README.md](build/README.md) for detailed usage instructions.
+
+## License
+
+MIT License
