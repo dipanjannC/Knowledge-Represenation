@@ -1,92 +1,93 @@
-# Knowledge Representation - Ontology Alignment System
+# Knowledge Representation & Semantic Modeling
 
-This project provides an automated ontology alignment system with LLM integration for aligning custom ontologies with standard frameworks (FIBO, gUFO, SAREF).
+A comprehensive framework for building semantic models and knowledge graphs that enable intelligent systems, LLM-powered applications, and autonomous agents to understand and reason about domain knowledge.
 
-## Installation
+## Overview
 
-### Using uv (Recommended)
+This repository provides tools, examples, and guidelines for creating structured, machine-readable representations of knowledge using semantic web technologies (RDF, OWL, SPARQL). It bridges the gap between raw data and intelligent systems by providing standardized ways to model domain concepts, relationships, and constraints.
 
-```bash
-# Install uv if you haven't already
-curl -LsSf https://astral.sh/uv/install.sh | sh
+## Why Knowledge Representation Matters
 
-# Clone the repository
-git clone https://github.com/dipanjannC/Knowledge-Represenation.git
-cd Knowledge-Represenation
+### For Knowledge Graphs
 
-# Create virtual environment and install dependencies
-uv sync
+- **Interoperability**: Enable data exchange across systems using standardized vocabularies
+- **Reasoning**: Infer new knowledge from existing facts through logical rules
+- **Validation**: Enforce data quality and consistency through semantic constraints
+- **Integration**: Merge data from multiple sources with unified semantics
 
-# Activate the virtual environment
-source .venv/bin/activate  # On Unix/macOS
-# or
-.venv\Scripts\activate  # On Windows
-```
+### For AI & Intelligent Systems
 
-### Manual Installation
+- **Reduced Hallucination**: Ground LLM responses in structured, verifiable knowledge
+- **Context Awareness**: Provide agents with domain understanding and relationships
+- **Explainability**: Enable transparent decision-making through explicit knowledge structures
+- **Retrieval Augmentation**: Improve RAG systems with semantic queries beyond keyword matching
 
-```bash
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate
+## Repository Structure
 
-# Install dependencies
-pip install rdflib litellm
-```
+### 📁 `build/`
 
-## Dependencies
+Scripts for constructing and aligning knowledge graphs. Includes LLM-powered ontology alignment with standard frameworks (FIBO, gUFO, SAREF) and tools to combine modular ontologies into unified graphs.
 
-- **rdflib** (>=7.1.1): RDF graph manipulation and parsing
-- **litellm** (>=1.80.0): Unified LLM API interface
+### 📁 `data-structures/`
 
-### Optional Development Dependencies
+Alternative knowledge representation approaches including hypergraphs, labeled property graphs (LPG), and RDF implementations for different use cases.
 
-- **pytest** (>=8.0.0): Testing framework
-- **black** (>=24.0.0): Code formatter
-- **ruff** (>=0.8.0): Fast Python linter
+### 📁 `docs/`
+
+Comprehensive guidelines for semantic modeling best practices, quick-start tutorials, and design patterns for creating effective ontologies.
+
+### 📁 `examples/`
+
+Domain-specific semantic models demonstrating real-world applications:
+
+- **domain-specific/**: Finance, healthcare, IoT, sports, and social bias modeling
+- **knowledge-graphs/**: Research networks with papers, citations, and collaborations
+- **ontologies/**: Agent-based systems and e-commerce examples in Turtle and JSON-LD
+
+### 📁 `templates/`
+
+Reusable ontology templates providing starting points for new domain models with standardized structure and documentation patterns.
+
+### 📁 `tools/`
+
+Utilities for validation (SHACL, OWL), format conversion (RDF/XML, Turtle, JSON-LD), SPARQL query libraries, and ontology documentation generators.
+
+### 📁 `use-cases/`
+
+Real-world applications demonstrating how semantic models enable customer service automation, research assistants, enterprise data integration, and smart city management.
 
 ## Quick Start
 
-1. **Set up API key**:
-   ```bash
-   export GEMINI_API_KEY='your-gemini-api-key'
-   ```
+```bash
+# Install dependencies using uv (recommended)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+git clone https://github.com/dipanjannC/Knowledge-Represenation.git
+cd Knowledge-Represenation
+uv sync && source .venv/bin/activate
 
-2. **Build composite graph**:
-   ```bash
-   python build/build_graph.py
-   ```
+# Set up API key for LLM alignment
+export GEMINI_API_KEY='your-api-key'
 
-3. **Generate alignments**:
-   ```bash
-   python build/llm_align.py
-   ```
+# Build a composite knowledge graph
+python build/build_graph.py
 
-## Project Structure
-
-```
-.
-├── build/                  # Build scripts and alignment system
-│   ├── llm_align.py       # LLM-based alignment generator
-│   ├── build_graph.py     # Composite graph builder
-│   ├── alignment/         # Framework metadata and alignments
-│   └── data/              # Generated graphs
-├── examples/              # Domain-specific ontologies
-│   └── domain-specific/   # Modular TTL files
-├── templates/             # Ontology templates
-└── pyproject.toml         # Project dependencies
+# Generate ontology alignments
+python build/llm_align.py
 ```
 
-## Features
+## Key Features
 
-- **Automated Alignment**: LLM-generated mappings between ontologies
-- **Multiple Frameworks**: Support for FIBO, gUFO, and SAREF
-- **Modular Architecture**: Clean class-based design
-- **Flexible Configuration**: Easy framework and model selection
+- **LLM-Assisted Alignment**: Automatically map custom ontologies to standard frameworks
+- **Modular Architecture**: Compose knowledge graphs from reusable domain models
+- **Multi-Format Support**: Work with RDF/Turtle, OWL, JSON-LD, and property graphs
+- **Production-Ready Examples**: Domain models for finance, IoT, healthcare, and more
+- **Comprehensive Tooling**: Validation, conversion, and query utilities included
 
 ## Documentation
 
-See [build/README.md](build/README.md) for detailed usage instructions.
+- [Semantic Modeling Guidelines](docs/guidelines/semantic-modeling-guidelines.md)
+- [Quick Start Guide](docs/guidelines/quick-start.md)
+- [Build System Documentation](build/README.md)
 
 ## License
 
